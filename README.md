@@ -1,29 +1,31 @@
-# README #
+<!-- 
+This README describes the package. If you publish this package to pub.dev,
+this README's contents appear on the landing page for your package.
 
-This README would normally document whatever steps are necessary to get your application up and running.
+For information about how to write a good package README, see the guide for
+[writing package pages](https://dart.dev/guides/libraries/writing-package-pages). 
 
-### What is this repository for? ###
+For general information about developing packages, see the Dart guide for
+[creating packages](https://dart.dev/guides/libraries/create-library-packages)
+and the Flutter guide for
+[developing packages and plugins](https://flutter.dev/developing-packages). 
+-->
 
-* Quick summary
-* Version
-* [Learn Markdown](https://bitbucket.org/tutorials/markdowndemo)
+TODO: Put a short description of the package here that helps potential users
+know whether this package might be useful for them.
 
-### How do I get set up? ###
+## Features
 
-* Summary of set up
-* Configuration
-* Dependencies
-* Database configuration
-* How to run tests
-* Deployment instructions
+TODO: List what your package can do. Maybe include images, gifs, or videos.
 
-### Contribution guidelines ###
+## Getting started
 
-* Writing tests
-* Code review
-* Other guidelines
+This is a package based on Dio with a few extra QOL features. Custom made for Wisemen Flutter.
 
-### Who do I talk to? ###
+## Usage
 
-* Repo owner or admin
-* Other community or team contact
+Create a WiseClient and use it like you would any other Dio client.
+
+```dart
+final client = WiseClient();
+```
