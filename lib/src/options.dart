@@ -46,12 +46,13 @@ class WiseOptions extends BaseOptions {
 
   /// Constructor for [WiseOptions] with base options
   WiseOptions.base({
-    required super.baseUrl,
+    String url = '',
   })  : assert(
-          baseUrl.isEmpty || Uri.parse(baseUrl).host.isNotEmpty,
+          url.isEmpty || Uri.parse(url).host.isNotEmpty,
           'baseUrl host can not be empty',
         ),
         super(
+          baseUrl: url,
           connectTimeout: const Duration(seconds: 30),
           receiveTimeout: const Duration(seconds: 60),
           sendTimeout: const Duration(seconds: 120),
@@ -62,10 +63,10 @@ class WiseOptions extends BaseOptions {
 
   /// Constructor for [WiseOptions] with locale string and base options
   WiseOptions.baseWithLocale({
-    required super.baseUrl,
     required String locale,
+    String url = '',
   })  : assert(
-          baseUrl.isEmpty || Uri.parse(baseUrl).host.isNotEmpty,
+          url.isEmpty || Uri.parse(url).host.isNotEmpty,
           'baseUrl host can not be empty',
         ),
         assert(
@@ -73,6 +74,7 @@ class WiseOptions extends BaseOptions {
           'locale has to be a valid locale',
         ),
         super(
+          baseUrl: url,
           connectTimeout: const Duration(seconds: 30),
           receiveTimeout: const Duration(seconds: 60),
           sendTimeout: const Duration(seconds: 120),

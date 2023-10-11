@@ -7,7 +7,15 @@ environment:
 
 dependencies:
   dio: ^5.3.3
+  flutter:
+    sdk: flutter
+  fresh_dio: ^0.4.1
+  native_dio_adapter: ^1.0.0+2
 
 dev_dependencies:
+  flutter_test:
+    sdk: flutter
   lints: ^2.0.0
   test: ^1.21.0
+
+flutter:
