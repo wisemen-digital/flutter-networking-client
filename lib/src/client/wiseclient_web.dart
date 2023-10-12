@@ -33,14 +33,24 @@ class WebWiseClient extends DioForBrowser implements WiseClient {
     if (addedInterceptors != null) {
       interceptors.addAll(addedInterceptors);
     } else {
+      _fresh = Fresh.oAuth2(
+        tokenStorage: InMemoryTokenStorage<OAuth2Token>(),
+        refreshToken: refreshFunction,
+      );
       interceptors.addAll(
         [
-          getFreshInterceptor(refreshFunction: refreshFunction),
           BaseErrorInterceptor(),
+          _fresh,
         ],
       );
     }
   }
+
+  /// [Fresh] to handle authentication
+  static Fresh<OAuth2Token> _fresh = Fresh.oAuth2(
+    tokenStorage: InMemoryTokenStorage<OAuth2Token>(),
+    refreshToken: (_, __) async => const OAuth2Token(accessToken: ''),
+  );
 
   /// [CancelToken] for wise requests
   CancelToken _cancelToken = CancelToken();
@@ -124,5 +134,17 @@ class WebWiseClient extends DioForBrowser implements WiseClient {
   @override
   void resetWiseCancelToken() {
     _cancelToken = CancelToken();
+  }
+
+  /// [removeFreshToken] method that removes bearer authentication token
+  @override
+  void removeFreshToken() {
+    _fresh.revokeToken();
+  }
+
+  /// [setFreshToken] method that sets bearer authentication token
+  @override
+  void setFreshToken({required OAuth2Token token}) {
+    _fresh.setToken(token);
   }
 }

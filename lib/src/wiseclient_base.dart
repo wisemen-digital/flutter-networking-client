@@ -50,4 +50,14 @@ abstract interface class WiseClient implements Dio {
   void resetWiseCancelToken() {
     throw UnimplementedError();
   }
+
+  /// [setFreshToken] method that sets bearer authentication token
+  void setFreshToken({required OAuth2Token token}) {
+    throw UnimplementedError();
+  }
+
+  /// [removeFreshToken] method that removes bearer authentication token
+  void removeFreshToken() {
+    throw UnimplementedError();
+  }
 }
