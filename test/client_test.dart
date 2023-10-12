@@ -111,7 +111,29 @@ void main() {
       } catch (e) {
         response = e.toString();
       }
-      expect(response, isNotEmpty);
+      expect(response, isA<String>());
+    });
+
+    test('Can cancel and reset successfully', () async {
+      const path = 'todos/1';
+      dynamic response;
+      try {
+        Future.delayed(
+          const Duration(milliseconds: 5),
+          awesome.cancelAndReset,
+        );
+        response = await awesome.wGet(path);
+      } catch (e) {
+        response = e.toString();
+      }
+      expect(response, isA<String>());
+      await Future.delayed(
+        const Duration(seconds: 2),
+        () async {
+          final secondRequest = await awesome.wGet(path);
+          expect(secondRequest, isMap);
+        },
+      );
     });
   });
 }

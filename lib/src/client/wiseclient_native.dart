@@ -49,7 +49,7 @@ class NativeWiseClient extends DioForNative implements WiseClient {
       interceptors.addAll(
         [
           getFreshInterceptor(refreshFunction: refreshFunction),
-          ErrorInterceptor(),
+          BaseErrorInterceptor(),
         ],
       );
     }
@@ -79,11 +79,29 @@ class NativeWiseClient extends DioForNative implements WiseClient {
     }
   }
 
-  /// [wPost] method replaces get with build in features
+  /// [wPost] method replaces post with build in features
   @override
   Future<dynamic> wPost(String path, {Map<String, dynamic>? queryParameters, Object? body}) async {
     try {
       final response = await post<dynamic>(
+        path,
+        cancelToken: _cancelToken,
+        queryParameters: queryParameters,
+        data: body,
+      );
+      return response.data;
+    } on DioException {
+      rethrow;
+    } catch (e) {
+      throw UnknownException(e.toString());
+    }
+  }
+
+  /// [wPut] method replaces put with build in features
+  @override
+  Future<dynamic> wPut(String path, {Map<String, dynamic>? queryParameters, Object? body}) async {
+    try {
+      final response = await put<dynamic>(
         path,
         cancelToken: _cancelToken,
         queryParameters: queryParameters,

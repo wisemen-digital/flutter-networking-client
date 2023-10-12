@@ -30,15 +30,16 @@ class WebWiseClient extends DioForBrowser implements WiseClient {
   }) {
     options = baseOptions ?? BaseOptions();
     httpClientAdapter = BrowserHttpClientAdapter();
-    interceptors.addAll(
-      [
-        ...addedInterceptors ?? <Interceptor>[],
-        ...[
+    if (addedInterceptors != null) {
+      interceptors.addAll(addedInterceptors);
+    } else {
+      interceptors.addAll(
+        [
           getFreshInterceptor(refreshFunction: refreshFunction),
-          ErrorInterceptor(),
+          BaseErrorInterceptor(),
         ],
-      ],
-    );
+      );
+    }
   }
 
   /// [CancelToken] for wise requests
@@ -70,6 +71,24 @@ class WebWiseClient extends DioForBrowser implements WiseClient {
   Future<dynamic> wPost(String path, {Map<String, dynamic>? queryParameters, Object? body}) async {
     try {
       final response = await post<dynamic>(
+        path,
+        cancelToken: _cancelToken,
+        queryParameters: queryParameters,
+        data: body,
+      );
+      return response.data;
+    } on DioException {
+      rethrow;
+    } catch (e) {
+      throw UnknownException(e.toString());
+    }
+  }
+
+  /// [wPut] method replaces put with build in features
+  @override
+  Future<dynamic> wPut(String path, {Map<String, dynamic>? queryParameters, Object? body}) async {
+    try {
+      final response = await put<dynamic>(
         path,
         cancelToken: _cancelToken,
         queryParameters: queryParameters,

@@ -26,8 +26,13 @@ abstract interface class WiseClient implements Dio {
     throw UnimplementedError();
   }
 
-  /// [wPost] method replaces get with build in features
+  /// [wPost] method replaces post with build in features
   Future<dynamic> wPost(String path, {Map<String, dynamic>? queryParameters, Object? body}) async {
+    throw UnimplementedError();
+  }
+
+  /// [wPut] method replaces put with build in features
+  Future<dynamic> wPut(String path, {Map<String, dynamic>? queryParameters, Object? body}) async {
     throw UnimplementedError();
   }
 
