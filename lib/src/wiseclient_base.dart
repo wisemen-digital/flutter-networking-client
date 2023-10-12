@@ -21,6 +21,9 @@ abstract interface class WiseClient implements Dio {
   /// Checks if client is an instance on web or native
   bool get isWebClient => throw UnimplementedError();
 
+  /// [Stream] of [AuthenticationStatus], only works if [Fresh] client is in use
+  Stream<AuthenticationStatus> get authenticationStatus => throw UnimplementedError();
+
   /// [wGet] method replaces get with build in features
   Future<dynamic> wGet(String path, {Map<String, dynamic>? queryParameters, Object? body}) async {
     throw UnimplementedError();

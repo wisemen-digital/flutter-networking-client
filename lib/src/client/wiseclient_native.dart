@@ -71,6 +71,12 @@ class NativeWiseClient extends DioForNative implements WiseClient {
   @override
   bool get isWebClient => false;
 
+  /// [Stream] of [AuthenticationStatus], only works if [Fresh] client is in use
+  @override
+  Stream<AuthenticationStatus> get authenticationStatus {
+    return _fresh.authenticationStatus;
+  }
+
   /// [wGet] method replaces get with build in features
   @override
   Future<dynamic> wGet(String path, {Map<String, dynamic>? queryParameters, Object? body}) async {
@@ -152,7 +158,9 @@ class NativeWiseClient extends DioForNative implements WiseClient {
   /// [removeFreshToken] method that removes bearer authentication token
   @override
   void removeFreshToken() {
-    _fresh.revokeToken();
+    _fresh
+      ..setToken(null)
+      ..revokeToken();
   }
 
   /// [setFreshToken] method that sets bearer authentication token
