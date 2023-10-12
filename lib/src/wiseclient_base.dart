@@ -1,6 +1,4 @@
-import 'package:dio/dio.dart';
 import 'package:fresh_dio/fresh_dio.dart';
-import 'package:wiseclient/src/exceptions/unknown_exception.dart';
 import 'client/wiseclient_native.dart' if (dart.library.html) 'client/wiseclient_web.dart';
 import 'options.dart';
 
@@ -11,22 +9,40 @@ abstract interface class WiseClient implements Dio {
     required Future<OAuth2Token> Function(OAuth2Token?, Dio) refreshFunction,
     WiseOptions? options,
     bool useNativeAdaptor = false,
+    bool proxyman = false,
   }) =>
       createClient(
         options: options,
         refreshFunction: refreshFunction,
         useNativeAdapter: useNativeAdaptor,
+        proxyman: proxyman,
       );
 
   /// Checks if client is an instance on web or native
   bool get isWebClient => throw UnimplementedError();
 
   /// [wGet] method replaces get with build in features
-  static Future<dynamic> wGet() async {
-    try {} on DioException {
-      rethrow;
-    } catch (e) {
-      throw UnknownException(e.toString());
-    }
+  Future<dynamic> wGet(String path, {Map<String, dynamic>? queryParameters, Object? body}) async {
+    throw UnimplementedError();
+  }
+
+  /// [wPost] method replaces get with build in features
+  Future<dynamic> wPost(String path, {Map<String, dynamic>? queryParameters, Object? body}) async {
+    throw UnimplementedError();
+  }
+
+  /// [cancelAndReset] method cancels current requests and resets the canceltoken
+  Future<void> cancelAndReset() async {
+    throw UnimplementedError();
+  }
+
+  /// [cancelWiseRequests] method cancels current requests
+  void cancelWiseRequests() {
+    throw UnimplementedError();
+  }
+
+  /// [resetWiseCancelToken] method resets the cancel token
+  void resetWiseCancelToken() {
+    throw UnimplementedError();
   }
 }

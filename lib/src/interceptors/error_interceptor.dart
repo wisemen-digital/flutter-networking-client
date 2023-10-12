@@ -9,7 +9,7 @@ class ErrorInterceptor extends Interceptor {
   Future<void> onError(
     DioException err,
     ErrorInterceptorHandler handler,
-  ) async {
+  ) {
     throw err;
   }
 }
