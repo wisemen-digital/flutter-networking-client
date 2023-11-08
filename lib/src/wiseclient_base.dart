@@ -1,3 +1,4 @@
+import 'package:dio/dio.dart';
 import 'package:fresh_dio/fresh_dio.dart';
 import 'client/wiseclient_native.dart' if (dart.library.html) 'client/wiseclient_web.dart';
 import 'options.dart';
@@ -10,12 +11,14 @@ abstract interface class WiseClient implements Dio {
     WiseOptions? options,
     bool useNativeAdaptor = false,
     bool proxyman = false,
+    Iterable<Interceptor>? addedInterceptors,
   }) =>
       createClient(
         options: options,
         refreshFunction: refreshFunction,
         useNativeAdapter: useNativeAdaptor,
         proxyman: proxyman,
+        addedInterceptors: addedInterceptors,
       );
 
   /// Checks if client is an instance on web or native
