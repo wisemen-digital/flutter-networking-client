@@ -11,7 +11,6 @@ abstract mixin class WiseClient implements Dio {
     Future<OAuth2Token> Function(OAuth2Token?, Dio)? refreshFunction,
     WiseOptions? options,
     bool useNativeAdaptor = false,
-    bool proxyman = false,
     Iterable<Interceptor>? interceptorsToAdd,
     Iterable<Interceptor>? interceptors,
   }) {
@@ -21,7 +20,6 @@ abstract mixin class WiseClient implements Dio {
       options: options,
       refreshFunction: refreshFunction,
       useNativeAdapter: useNativeAdaptor,
-      proxyman: proxyman,
       interceptorsToAdd: interceptorsToAdd,
       replacementInterceptors: interceptors,
     );
@@ -31,7 +29,7 @@ abstract mixin class WiseClient implements Dio {
   bool get isWebClient => throw UnimplementedError();
 
   /// [Fresh] to handle authentication
-  final Fresh<OAuth2Token> _fresh = Fresh.oAuth2(
+  Fresh<OAuth2Token> fresh = Fresh.oAuth2(
     tokenStorage: InMemoryTokenStorage<OAuth2Token>(),
     refreshToken: (_, __) async => const OAuth2Token(accessToken: ''),
   );
@@ -41,7 +39,7 @@ abstract mixin class WiseClient implements Dio {
 
   /// [Stream] of [AuthenticationStatus], only works if [Fresh] client is in use
   Stream<AuthenticationStatus> get authenticationStatus {
-    return _fresh.authenticationStatus;
+    return fresh.authenticationStatus;
   }
 
   /// [wGet] method replaces get with build in features
@@ -118,13 +116,13 @@ abstract mixin class WiseClient implements Dio {
 
   /// [removeFreshToken] method that removes bearer authentication token
   void removeFreshToken() {
-    _fresh
+    fresh
       ..setToken(null)
       ..revokeToken();
   }
 
   /// [setFreshToken] method that sets bearer authentication token
   void setFreshToken({required OAuth2Token token}) {
-    _fresh.setToken(token);
+    fresh.setToken(token);
   }
 }

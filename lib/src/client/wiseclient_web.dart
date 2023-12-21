@@ -10,7 +10,6 @@ WiseClient createClient({
   Future<OAuth2Token> Function(OAuth2Token?, Dio)? refreshFunction,
   BaseOptions? baseOptions,
   bool useNativeAdapter = false,
-  bool proxyman = false,
   Iterable<Interceptor>? interceptorsToAdd,
   Iterable<Interceptor>? replacementInterceptors,
 }) =>
@@ -35,7 +34,7 @@ base class WebWiseClient extends DioForBrowser with WiseClient {
     if (replacementInterceptors != null) {
       interceptors.addAll(replacementInterceptors);
     } else {
-      final fresh = Fresh.oAuth2(
+      fresh = Fresh.oAuth2(
         tokenStorage: InMemoryTokenStorage<OAuth2Token>(),
         refreshToken: refreshFunction!,
       );
