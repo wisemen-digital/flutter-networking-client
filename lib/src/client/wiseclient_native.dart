@@ -10,29 +10,32 @@ import '../interceptors/interceptors.dart';
 
 /// Creates a [WiseClient] for native
 WiseClient createClient({
-  required Future<OAuth2Token> Function(OAuth2Token?, Dio) refreshFunction,
+  Future<OAuth2Token> Function(OAuth2Token?, Dio)? refreshFunction,
   BaseOptions? options,
-  Iterable<Interceptor>? addedInterceptors,
   bool useNativeAdapter = false,
   bool proxyman = false,
+  Iterable<Interceptor>? interceptorsToAdd,
+  Iterable<Interceptor>? replacementInterceptors,
 }) =>
     NativeWiseClient(
       baseOptions: options,
       refreshFunction: refreshFunction,
       useNativeAdapter: useNativeAdapter,
-      addedInterceptors: addedInterceptors,
       proxyman: proxyman,
+      interceptorsToAdd: interceptorsToAdd,
+      replacementInterceptors: replacementInterceptors,
     );
 
 /// Implements [DioForNative] for native
 base class NativeWiseClient extends DioForNative with WiseClient {
   /// Creates a [NativeWiseClient] instance
   NativeWiseClient({
-    required Future<OAuth2Token> Function(OAuth2Token?, Dio) refreshFunction,
     required bool useNativeAdapter,
     required bool proxyman,
+    Future<OAuth2Token> Function(OAuth2Token?, Dio)? refreshFunction,
     BaseOptions? baseOptions,
-    Iterable<Interceptor>? addedInterceptors,
+    Iterable<Interceptor>? interceptorsToAdd,
+    Iterable<Interceptor>? replacementInterceptors,
   }) {
     options = baseOptions ?? BaseOptions();
     if (proxyman) {
@@ -40,19 +43,20 @@ base class NativeWiseClient extends DioForNative with WiseClient {
     } else {
       httpClientAdapter = useNativeAdapter ? NativeAdapter() : IOHttpClientAdapter();
     }
-    if (addedInterceptors != null) {
+    if (replacementInterceptors != null) {
       interceptors.addAll(
-        addedInterceptors,
+        replacementInterceptors,
       );
     } else {
       final fresh = Fresh.oAuth2(
         tokenStorage: InMemoryTokenStorage<OAuth2Token>(),
-        refreshToken: refreshFunction,
+        refreshToken: refreshFunction!,
       );
       interceptors.addAll(
         [
           BaseErrorInterceptor(),
           fresh,
+          if (interceptorsToAdd != null) ...interceptorsToAdd,
         ],
       );
     }

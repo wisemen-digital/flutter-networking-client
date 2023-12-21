@@ -8,19 +8,24 @@ import 'options.dart';
 abstract mixin class WiseClient implements Dio {
   /// Creates [WiseClient] instance
   factory WiseClient({
-    required Future<OAuth2Token> Function(OAuth2Token?, Dio) refreshFunction,
+    Future<OAuth2Token> Function(OAuth2Token?, Dio)? refreshFunction,
     WiseOptions? options,
     bool useNativeAdaptor = false,
     bool proxyman = false,
-    Iterable<Interceptor>? addedInterceptors,
-  }) =>
-      createClient(
-        options: options,
-        refreshFunction: refreshFunction,
-        useNativeAdapter: useNativeAdaptor,
-        proxyman: proxyman,
-        addedInterceptors: addedInterceptors,
-      );
+    Iterable<Interceptor>? interceptorsToAdd,
+    Iterable<Interceptor>? interceptors,
+  }) {
+    assert([refreshFunction, interceptors].any((element) => element != null), 'Either refreshFuction or interceptors has to be used');
+    assert([refreshFunction, interceptors].any((element) => element == null), 'RefreshFunction and interceptors cannot be used at the same time');
+    return createClient(
+      options: options,
+      refreshFunction: refreshFunction,
+      useNativeAdapter: useNativeAdaptor,
+      proxyman: proxyman,
+      interceptorsToAdd: interceptorsToAdd,
+      replacementInterceptors: interceptors,
+    );
+  }
 
   /// Checks if client is an instance on web or native
   bool get isWebClient => throw UnimplementedError();

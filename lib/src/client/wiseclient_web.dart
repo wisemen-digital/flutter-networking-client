@@ -7,39 +7,43 @@ import '../interceptors/interceptors.dart';
 
 /// Creates a [WiseClient] for native
 WiseClient createClient({
-  required Future<OAuth2Token> Function(OAuth2Token?, Dio) refreshFunction,
+  Future<OAuth2Token> Function(OAuth2Token?, Dio)? refreshFunction,
   BaseOptions? baseOptions,
-  Iterable<Interceptor>? addedInterceptors,
   bool useNativeAdapter = false,
   bool proxyman = false,
+  Iterable<Interceptor>? interceptorsToAdd,
+  Iterable<Interceptor>? replacementInterceptors,
 }) =>
     WebWiseClient(
       baseOptions: baseOptions,
       refreshFunction: refreshFunction,
-      addedInterceptors: addedInterceptors,
+      interceptorsToAdd: interceptorsToAdd,
+      replacementInterceptors: replacementInterceptors,
     );
 
 /// Implements [DioForBrowser] for native
 base class WebWiseClient extends DioForBrowser with WiseClient {
   /// Creates a [WebWiseClient] instance
   WebWiseClient({
-    required Future<OAuth2Token> Function(OAuth2Token?, Dio) refreshFunction,
+    Future<OAuth2Token> Function(OAuth2Token?, Dio)? refreshFunction,
     BaseOptions? baseOptions,
-    Iterable<Interceptor>? addedInterceptors,
+    Iterable<Interceptor>? interceptorsToAdd,
+    Iterable<Interceptor>? replacementInterceptors,
   }) {
     options = baseOptions ?? BaseOptions();
     httpClientAdapter = BrowserHttpClientAdapter();
-    if (addedInterceptors != null) {
-      interceptors.addAll(addedInterceptors);
+    if (replacementInterceptors != null) {
+      interceptors.addAll(replacementInterceptors);
     } else {
       final fresh = Fresh.oAuth2(
         tokenStorage: InMemoryTokenStorage<OAuth2Token>(),
-        refreshToken: refreshFunction,
+        refreshToken: refreshFunction!,
       );
       interceptors.addAll(
         [
           BaseErrorInterceptor(),
           fresh,
+          if (interceptorsToAdd != null) ...interceptorsToAdd,
         ],
       );
     }
