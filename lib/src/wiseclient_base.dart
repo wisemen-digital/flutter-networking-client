@@ -2,21 +2,23 @@ import 'package:dio/dio.dart';
 import 'package:fresh_dio/fresh_dio.dart';
 import 'client/wiseclient_native.dart' if (dart.library.html) 'client/wiseclient_web.dart';
 import 'exceptions/exceptions.dart';
+import 'interceptors/interceptors.dart';
 import 'options.dart';
 
 /// A networking client that extends [Dio]
 abstract mixin class WiseClient implements Dio {
   /// Creates [WiseClient] instance
   factory WiseClient({
+    required Iterable<WiseInterceptor> wiseInterceptors,
     Future<OAuth2Token> Function(OAuth2Token?, Dio)? refreshFunction,
     WiseOptions? options,
     bool useNativeAdaptor = false,
     Iterable<Interceptor>? interceptorsToAdd,
     Iterable<Interceptor>? interceptors,
   }) {
-    assert([refreshFunction, interceptors].any((element) => element != null), 'Either refreshFuction or interceptors has to be used');
-    assert([refreshFunction, interceptors].any((element) => element == null), 'RefreshFunction and interceptors cannot be used at the same time');
+    assert(wiseInterceptors.contains(WiseInterceptor.fresh) ? refreshFunction != null : refreshFunction == null, 'RefreshFunction is required when using fresh interceptor');
     return createClient(
+      wiseInterceptors: wiseInterceptors,
       options: options,
       refreshFunction: refreshFunction,
       useNativeAdapter: useNativeAdaptor,

@@ -7,6 +7,7 @@ import '../interceptors/interceptors.dart';
 
 /// Creates a [WiseClient] for native
 WiseClient createClient({
+  required Iterable<WiseInterceptor> wiseInterceptors,
   Future<OAuth2Token> Function(OAuth2Token?, Dio)? refreshFunction,
   BaseOptions? baseOptions,
   bool useNativeAdapter = false,
@@ -14,6 +15,7 @@ WiseClient createClient({
   Iterable<Interceptor>? replacementInterceptors,
 }) =>
     WebWiseClient(
+      wiseInterceptors: wiseInterceptors,
       baseOptions: baseOptions,
       refreshFunction: refreshFunction,
       interceptorsToAdd: interceptorsToAdd,
@@ -24,6 +26,7 @@ WiseClient createClient({
 base class WebWiseClient extends DioForBrowser with WiseClient {
   /// Creates a [WebWiseClient] instance
   WebWiseClient({
+    required Iterable<WiseInterceptor> wiseInterceptors,
     Future<OAuth2Token> Function(OAuth2Token?, Dio)? refreshFunction,
     BaseOptions? baseOptions,
     Iterable<Interceptor>? interceptorsToAdd,
@@ -34,14 +37,9 @@ base class WebWiseClient extends DioForBrowser with WiseClient {
     if (replacementInterceptors != null) {
       interceptors.addAll(replacementInterceptors);
     } else {
-      fresh = Fresh.oAuth2(
-        tokenStorage: InMemoryTokenStorage<OAuth2Token>(),
-        refreshToken: refreshFunction!,
-      );
       interceptors.addAll(
         [
-          BaseErrorInterceptor(),
-          fresh,
+          ...wiseInterceptors.map((e) => e.getInterceptor(refreshFunction: refreshFunction)),
           if (interceptorsToAdd != null) ...interceptorsToAdd,
         ],
       );
