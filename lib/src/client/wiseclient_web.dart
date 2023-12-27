@@ -37,9 +37,13 @@ base class WebWiseClient extends DioForBrowser with WiseClient {
     if (replacementInterceptors != null) {
       interceptors.addAll(replacementInterceptors);
     } else {
+      if (wiseInterceptors.contains(WiseInterceptor.fresh)) {
+        fresh = getFreshInterceptor(refreshFunction: refreshFunction!);
+      }
       interceptors.addAll(
         [
-          ...wiseInterceptors.map((e) => e.getInterceptor(refreshFunction: refreshFunction)),
+          if (wiseInterceptors.contains(WiseInterceptor.fresh)) fresh,
+          ...wiseInterceptors.map((e) => e.getInterceptor()).nonNulls,
           if (interceptorsToAdd != null) ...interceptorsToAdd,
         ],
       );

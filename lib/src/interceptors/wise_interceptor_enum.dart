@@ -16,13 +16,11 @@ enum WiseInterceptor {
   /// [logging] interceptor to log requests
   logging;
 
-  /// Function to get the correct interceptor
-  Interceptor getInterceptor({Future<OAuth2Token> Function(OAuth2Token?, Dio)? refreshFunction}) {
+  /// Function to get the correct interceptor, doesn't return [Fresh] since the client needs the object
+  Interceptor? getInterceptor() {
     switch (this) {
       case WiseInterceptor.fresh:
-        return getFreshInterceptor(
-          refreshFunction: refreshFunction!,
-        );
+        return null;
       case WiseInterceptor.error:
         return BaseErrorInterceptor();
       case WiseInterceptor.logging:

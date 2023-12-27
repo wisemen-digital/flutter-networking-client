@@ -124,7 +124,7 @@ abstract mixin class WiseClient implements Dio {
   }
 
   /// [setFreshToken] method that sets bearer authentication token
-  void setFreshToken({required OAuth2Token token}) {
-    fresh.setToken(token);
+  Future<void> setFreshToken({required OAuth2Token token}) async {
+    await fresh.setToken(token);
   }
 }
