@@ -1,4 +1,3 @@
-import 'package:dio/dio.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:fresh_dio/fresh_dio.dart';
 import 'package:wiseclient/wiseclient.dart';
