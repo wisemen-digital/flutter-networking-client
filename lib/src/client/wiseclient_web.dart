@@ -9,14 +9,14 @@ import '../interceptors/interceptors.dart';
 WiseClient createClient({
   required Iterable<WiseInterceptor> wiseInterceptors,
   Future<OAuth2Token> Function(OAuth2Token?, Dio)? refreshFunction,
-  BaseOptions? baseOptions,
+  BaseOptions? options,
   bool useNativeAdapter = false,
   Iterable<Interceptor>? interceptorsToAdd,
   Iterable<Interceptor>? replacementInterceptors,
 }) =>
     WebWiseClient(
       wiseInterceptors: wiseInterceptors,
-      baseOptions: baseOptions,
+      baseOptions: options,
       refreshFunction: refreshFunction,
       interceptorsToAdd: interceptorsToAdd,
       replacementInterceptors: replacementInterceptors,
