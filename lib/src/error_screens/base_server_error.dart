@@ -68,9 +68,15 @@ class _BaseServerErrorState extends State<BaseServerError> {
                   switchInCurve: Curves.ease,
                   switchOutCurve: Curves.easeOut,
                   child: showFullMessage
-                      ? Text(
-                          widget.errorInformation,
-                          textAlign: TextAlign.center,
+                      ? Row(
+                          children: [
+                            Expanded(
+                              child: Text(
+                                widget.errorInformation,
+                                textAlign: TextAlign.center,
+                              ),
+                            ),
+                          ],
                         )
                       : const SizedBox.shrink(),
                 ),
