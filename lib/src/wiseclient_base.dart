@@ -12,7 +12,7 @@ abstract mixin class WiseClient implements Dio {
     required Iterable<WiseInterceptor> wiseInterceptors,
     Future<OAuth2Token> Function(OAuth2Token?, Dio)? refreshFunction,
     WiseOptions? options,
-    bool useNativeAdaptor = false,
+    bool useNativeAdapter = false,
     Iterable<Interceptor>? interceptorsToAdd,
     Iterable<Interceptor>? interceptors,
   }) {
@@ -21,7 +21,7 @@ abstract mixin class WiseClient implements Dio {
       wiseInterceptors: wiseInterceptors,
       options: options,
       refreshFunction: refreshFunction,
-      useNativeAdapter: useNativeAdaptor,
+      useNativeAdapter: useNativeAdapter,
       interceptorsToAdd: interceptorsToAdd,
       replacementInterceptors: interceptors,
     );
