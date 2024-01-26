@@ -62,8 +62,11 @@ abstract mixin class WiseClient implements Dio {
   }
 
   /// [wPost] method replaces get with build in features
-  Future<dynamic> wPost(String path, {Map<String, dynamic>? queryParameters, Object? body}) async {
+  Future<dynamic> wPost(String path, {Map<String, dynamic>? queryParameters, Object? body, Map<String, dynamic>? extraHeaders}) async {
     try {
+      if (extraHeaders != null) {
+        options.headers.addAll(extraHeaders);
+      }
       final response = await post<dynamic>(
         path,
         cancelToken: cancelToken,

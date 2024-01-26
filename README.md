@@ -2,7 +2,19 @@ This is a package based on Dio with a few extra QOL features. Custom made for Fl
 
 ## Features
 
-TODO: List what your package can do. Maybe include images, gifs, or videos.
+🌐 Extension on Dio client
+
+🍋 Token refresh with InMemoryStorage for OAuth tokens 
+
+📑 Formatted logging
+
+❗️ Basic error handling widgets to be used together with runZonedGuarded
+
+❌ Cancel requests
+
+🛡️ Protected/Unprotected
+
+📦 In separately importable package
 
 ## Getting started
 
@@ -13,5 +25,6 @@ This is a package based on Dio with a few extra QOL features. Custom made for Fl
 Create a WiseClient and use it like you would any other Dio client.
 
 ```dart
+final options = WiseOptions.base(url: url);
 final client = WiseClient();
 ```
