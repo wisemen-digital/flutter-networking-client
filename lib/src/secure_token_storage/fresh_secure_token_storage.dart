@@ -2,7 +2,8 @@ import 'dart:convert' show jsonEncode;
 
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:fresh_dio/fresh_dio.dart';
-import 'package:wiseclient/src/secure_token_storage/token_from_string_extension.dart';
+import 'map_from_token_extension.dart';
+import 'token_from_string_extension.dart';
 
 /// [FreshSecureTokenStorage] to store and keep tokens on device, implements [TokenStorage]
 class FreshSecureTokenStorage implements TokenStorage<OAuth2Token> {
@@ -43,7 +44,7 @@ class FreshSecureTokenStorage implements TokenStorage<OAuth2Token> {
     _token = token;
     await storage.write(
       key: storageIdentifier,
-      value: jsonEncode(token),
+      value: jsonEncode(token.toMap()),
     );
   }
 }

@@ -1,3 +1,7 @@
+## 1.0.5+1
+
+- Secure storage bugfix
+
 ## 1.0.5
 
 - Added secure token storage on device
