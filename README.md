@@ -4,7 +4,7 @@ This is a package based on Dio with a few extra QOL features. Custom made for Fl
 
 🌐 Extension on Dio client
 
-🍋 Token refresh with InMemoryStorage for OAuth tokens 
+🍋 Token refresh with FreshSecureTokenStorage for OAuth tokens 
 
 📑 Formatted logging
 

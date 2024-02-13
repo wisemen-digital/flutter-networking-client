@@ -4,6 +4,7 @@ import 'client/wiseclient_native.dart' if (dart.library.html) 'client/wiseclient
 import 'exceptions/exceptions.dart';
 import 'interceptors/interceptors.dart';
 import 'options.dart';
+import 'secure_token_storage/fresh_secure_token_storage.dart';
 
 /// A networking client that extends [Dio]
 abstract mixin class WiseClient implements Dio {
@@ -32,7 +33,7 @@ abstract mixin class WiseClient implements Dio {
 
   /// [Fresh] to handle authentication
   Fresh<OAuth2Token> fresh = Fresh.oAuth2(
-    tokenStorage: InMemoryTokenStorage<OAuth2Token>(),
+    tokenStorage: FreshSecureTokenStorage(),
     refreshToken: (_, __) async => const OAuth2Token(accessToken: ''),
   );
 
