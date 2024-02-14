@@ -19,6 +19,7 @@ final class WiseErrorHandler {
     this.gatewayTimout,
     this.otherServerError,
     this.otherClientError,
+    this.showAllErrors = false,
   });
 
   /// Required app navigation key [navigatorKey]
@@ -53,6 +54,9 @@ final class WiseErrorHandler {
 
   /// [Widget] for other client side errors, also used when the error code specific widget is not found
   final Widget? otherClientError;
+
+  /// [bool] for other client side errors, also used when the error code specific widget is not found
+  final bool showAllErrors;
 
   /// Function [pushErrorDetail] to push a route based on the error's status code
   Future<void> pushErrorDetail({required DioException exception}) async {
@@ -143,6 +147,14 @@ final class WiseErrorHandler {
               exception: exception,
             ),
           );
+        default:
+          if (showAllErrors) {
+            await state.push(
+              getNonNullOrBaseWidget(
+                exception: exception,
+              ),
+            );
+          }
       }
     }
   }
