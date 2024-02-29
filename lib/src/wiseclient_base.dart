@@ -121,10 +121,11 @@ abstract mixin class WiseClient implements Dio {
   }
 
   /// [removeFreshToken] method that removes bearer authentication token
-  void removeFreshToken() {
-    fresh
-      ..setToken(null)
-      ..revokeToken();
+  Future<void> removeFreshToken() async {
+    await Future.wait([
+      fresh.setToken(null),
+      fresh.revokeToken(),
+    ]);
   }
 
   /// [setFreshToken] method that sets bearer authentication token
