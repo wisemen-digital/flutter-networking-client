@@ -8,5 +8,4 @@ export 'src/error_screens/error_screens.dart';
 export 'src/exceptions/exceptions.dart';
 export 'src/interceptors/interceptors.dart';
 export 'src/options.dart';
-export 'src/secure_token_storage/snake_case_extension.dart';
 export 'src/wiseclient_base.dart';
