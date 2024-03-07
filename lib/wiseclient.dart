@@ -1,7 +1,7 @@
 /// Barrel file for base client.
 library wiseclient;
 
-export 'package:dio/dio.dart' show DioException;
+export 'package:dio/dio.dart' show DioException, Options;
 export 'package:fresh_dio/fresh_dio.dart' show AuthenticationStatus, RevokeTokenException;
 
 export 'src/error_screens/error_screens.dart';
