@@ -36,10 +36,6 @@ void main() {
       },
     );
 
-    setUp(() {
-      // Additional setup goes here.
-    });
-
     test('Client is native', () {
       expect(awesome.isWebClient, isFalse);
     });
@@ -138,12 +134,13 @@ void main() {
     });
   });
 
-  group('Tests with KOALA backend', () {
-    const url = 'https://api.vo-koala.staging.appwi.se';
-    const clientSecret = 'UdNRPZudJgLkPpxmdTg7oUQDMcBXVgTv4wAwTuWz';
-    const clientId = '99cad2e7-7ecf-4a64-9b75-023bc4420af0';
-    const email = 'michiel@appwise.be';
-    const password = r'v43f9$u4zyH9';
+  group('Tests with wisemen backend', () {
+    //! replace with testing values
+    const url = 'backend url';
+    const clientSecret = 'replace with client secret';
+    const clientId = 'replace with client id';
+    const email = 'email';
+    const password = 'password';
     final wiseOptions = WiseOptions.baseWithLocale(
       url: url,
       locale: 'nl',
@@ -237,8 +234,7 @@ void main() {
           expiresIn: currentToken?.expiresIn,
           refreshToken: currentToken?.refreshToken,
           tokenType: currentToken?.tokenType,
-          accessToken:
-              'eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJhdWQiOiI5OWNhZDJlNy03ZWNmLTRhNjQtOWI3NS0wMjNiYzQ0MjBhZjAiLCJqdGkiOiI4N2FlMzU5YmI3MTBiODVhNzc4YmRkMWEzMjVkNDY3YjU0NjYzN2M5ZjYyZGExMTYwZjEzYWEyZGZkMWM3NDkxMTIwZWEyZmQwNTM1MDg3MyIsImlhdCI6MTcwMzI1NzY3MS4yMzg1MTMsIm5iZiI6MTcwMzI1NzY3MS4yMzg1MTYsImV4cCI6MTczNDg4MDA3MS4yMjg2MjIsInN1YiI6IjMiLCJzY29wZXMiOltdfQ.Y9dfcWz2HgbmkUoLPh1i-7-AE6XrnFKtVj_d4BAQa8XEQOdYSBKr5bZF5tAqywizpUsoze7_kQE3rxpv1f3FZ3_QlX1oqV0Vhx0i3VizS02ciUCzQ_mD-BQtVK4J-43lIEVHRRpDFkxZyLRBSGYDD8FMIxeaOPvaL1P3wi7nYr0URFRmpXx-NUSvEdr396d05WANmEz115J8fJAvgqm_gzE-sCapzC9Yv6EtsDL44TrrvUgjsGVgxDFCBQwdLYbKdS8gpc10ASqqfizeQT91NAW6xFVrq0CHSI6axrekK4RP9iJmSM2ECh3bQDStfDmTMdFB1XKolDOu8dZ7LcG2IjwUlJuDhff5VnvXKJPKLst0rj7dSykyBd459gxl-kg45Sla0idVQi7VbGgG61g-HGWC2xluPq3AkuVN9ikGnGMorM449_hv-S7ZLxk96FYqUUCrhE74IYaZMjx8Kax3Jf6ZYmjaqimupJad8vGaN2xc1uWpupMvkTYlwjB1-aKRvEmrVOrICQES_SBwk4IrjcdUrEteXkgMEe1RpRzEXnN3lHNBlNlupaf1m1JevB811dyl3bP0HFlwc71YFSuPK3Iplpq6o_TvN7NWVKKCtMjq20QSQCJXeYZ2cnaBp4mAkvNWkADXLU7o2Bp2cRSG4Kxc2H8Sliluvx0ts4wgblo',
+          accessToken: currentToken?.accessToken ?? '',
         ),
       );
       await Future.delayed(

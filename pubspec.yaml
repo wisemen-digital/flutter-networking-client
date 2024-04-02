@@ -1,7 +1,6 @@
 name: wiseclient
 description: A http client based on Dio with extra features.
-version: 1.0.6+1
-publish_to: https://f9f5-84-193-8-153.ngrok-free.app/
+version: 1.0.0
 
 environment:
   sdk: '>=3.1.0 <4.0.0'
