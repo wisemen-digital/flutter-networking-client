@@ -1,3 +1,7 @@
+## 1.0.2
+
+- Added repository link and homepage
+
 ## 1.0.1
 
 - Formatting/added example
