@@ -1,8 +1,8 @@
 name: wiseclient
-description: A http client based on Dio with extra features.
-version: 1.0.2
-homepage: https://github.com/wisemen-digital/flutter-networking-client/
-repository: https://github.com/wisemen-digital/flutter-networking-client/
+description: A http client based on Dio with extra features and a few interceptors for basic functionality.
+version: 1.0.3
+homepage: https://github.com/wisemen-digital/flutter-networking-client
+repository: https://github.com/wisemen-digital/flutter-networking-client
 
 environment:
   sdk: '>=3.1.0 <4.0.0'

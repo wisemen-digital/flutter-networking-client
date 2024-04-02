@@ -1,3 +1,7 @@
+## 1.0.3
+
+- Changes for pub.dev analysis
+
 ## 1.0.2
 
 - Added repository link and homepage
