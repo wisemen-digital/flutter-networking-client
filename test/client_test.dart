@@ -194,11 +194,15 @@ void main() {
         body: body,
       );
 
-      expect(protected.interceptors.whereType<Fresh<OAuth2Token>>(), isNotEmpty);
+      expect(
+        protected.interceptors.whereType<Fresh<OAuth2Token>>(),
+        isNotEmpty,
+      );
 
       await protected.setFreshToken(
         token: OAuth2Token(
-          accessToken: (token as Map<String, dynamic>)['access_token'] as String,
+          accessToken:
+              (token as Map<String, dynamic>)['access_token'] as String,
           refreshToken: token['refresh_token'] as String,
           expiresIn: token['expires_in'] as int,
           tokenType: token['token_type'] as String,
@@ -207,14 +211,20 @@ void main() {
 
       expect(token, isMap);
       expect(await protected.fresh.token, isNotNull);
-      expect(await protected.authenticationStatus.first, equals(AuthenticationStatus.authenticated));
+      expect(
+        await protected.authenticationStatus.first,
+        equals(AuthenticationStatus.authenticated),
+      );
     });
 
     test('Client can execute a call with token', () async {
       const path = '/api/users/me';
 
       expect(await protected.fresh.token, isNotNull);
-      expect(protected.interceptors.whereType<Fresh<OAuth2Token>>(), isNotEmpty);
+      expect(
+        protected.interceptors.whereType<Fresh<OAuth2Token>>(),
+        isNotEmpty,
+      );
 
       final result = await protected.wGet(
         path,

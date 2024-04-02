@@ -1,3 +1,7 @@
+## 1.0.1
+
+- Formatting/added example
+
 ## 1.0.0
 
 - Initial version

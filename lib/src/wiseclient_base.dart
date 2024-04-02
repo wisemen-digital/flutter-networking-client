@@ -1,6 +1,7 @@
 import 'package:dio/dio.dart';
 import 'package:fresh_dio/fresh_dio.dart';
-import 'client/wiseclient_native.dart' if (dart.library.html) 'client/wiseclient_web.dart';
+import 'client/wiseclient_native.dart'
+    if (dart.library.html) 'client/wiseclient_web.dart';
 import 'exceptions/exceptions.dart';
 import 'interceptors/interceptors.dart';
 import 'options.dart';
@@ -17,7 +18,12 @@ abstract mixin class WiseClient implements Dio {
     Iterable<Interceptor>? interceptorsToAdd,
     Iterable<Interceptor>? interceptors,
   }) {
-    assert(wiseInterceptors.contains(WiseInterceptor.fresh) ? refreshFunction != null : refreshFunction == null, 'RefreshFunction is required when using fresh interceptor');
+    assert(
+      wiseInterceptors.contains(WiseInterceptor.fresh)
+          ? refreshFunction != null
+          : refreshFunction == null,
+      'RefreshFunction is required when using fresh interceptor',
+    );
     return createClient(
       wiseInterceptors: wiseInterceptors,
       options: options,
@@ -46,7 +52,11 @@ abstract mixin class WiseClient implements Dio {
   }
 
   /// [wGet] method replaces get with build in features
-  Future<dynamic> wGet(String path, {Map<String, dynamic>? queryParameters, Object? body}) async {
+  Future<dynamic> wGet(
+    String path, {
+    Map<String, dynamic>? queryParameters,
+    Object? body,
+  }) async {
     try {
       final response = await get<dynamic>(
         path,
@@ -63,7 +73,12 @@ abstract mixin class WiseClient implements Dio {
   }
 
   /// [wPost] method replaces get with build in features
-  Future<dynamic> wPost(String path, {Map<String, dynamic>? queryParameters, Object? body, Map<String, dynamic>? extraHeaders}) async {
+  Future<dynamic> wPost(
+    String path, {
+    Map<String, dynamic>? queryParameters,
+    Object? body,
+    Map<String, dynamic>? extraHeaders,
+  }) async {
     try {
       if (extraHeaders != null) {
         options.headers.addAll(extraHeaders);
@@ -83,7 +98,11 @@ abstract mixin class WiseClient implements Dio {
   }
 
   /// [wPut] method replaces put with build in features
-  Future<dynamic> wPut(String path, {Map<String, dynamic>? queryParameters, Object? body}) async {
+  Future<dynamic> wPut(
+    String path, {
+    Map<String, dynamic>? queryParameters,
+    Object? body,
+  }) async {
     try {
       final response = await put<dynamic>(
         path,
