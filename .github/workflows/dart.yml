@@ -16,7 +16,7 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      # - uses: actions/checkout@v4
+      - uses: actions/checkout@v4
 
       - name: Set up Flutter
         uses: subosito/flutter-action@v2
@@ -26,10 +26,10 @@ jobs:
       - run: flutter --version
       
       - name: Run flutter pub get
-        uses: flutter pub get
+        run: flutter pub get
       
       - name: Run build runner
-        uses: dart pub run build_runner build -d
+        run: dart pub run build_runner build -d
 
       - name: Verify formatting
         run: dart format . --line-length=200 --set-exit-if-changed
