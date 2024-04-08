@@ -34,8 +34,7 @@ base class NativeWiseClient extends DioForNative with WiseClient {
     Iterable<Interceptor>? replacementInterceptors,
   }) {
     options = baseOptions ?? BaseOptions();
-    httpClientAdapter =
-        useNativeAdapter ? NativeAdapter() : IOHttpClientAdapter();
+    httpClientAdapter = useNativeAdapter ? NativeAdapter() : IOHttpClientAdapter();
     if (replacementInterceptors != null) {
       interceptors.addAll(
         replacementInterceptors,

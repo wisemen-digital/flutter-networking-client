@@ -3,7 +3,7 @@
 # separate terms of service, privacy policy, and support
 # documentation.
 
-name: Dart
+name: Run linter and analyze
 
 on:
   push:
@@ -16,12 +16,20 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v3
-      - name: Set up dart
-      - uses: dart-lang/setup-dart@9a04e6d73cca37bd455e0608d7e5092f881fd603
+      - uses: actions/checkout@v4
 
+      - name: Set up Flutter
+        uses: subosito/flutter-action@v2
+        with:
+          channel: stable
+      
+      - run: flutter --version
+      
+      - name: Run flutter pub get
+        run: flutter pub get
+      
       - name: Verify formatting
-        run: dart format --line-length=200 --output=none --set-exit-if-changed .
+        run: dart format . --line-length=200 --set-exit-if-changed
 
       - name: Analyze project source
-        run: dart analyze
+        run: dart analyze --fatal-infos --fatal-warnings

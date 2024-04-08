@@ -2,8 +2,7 @@
 library wiseclient;
 
 export 'package:dio/dio.dart' show DioException, Options;
-export 'package:fresh_dio/fresh_dio.dart'
-    show AuthenticationStatus, RevokeTokenException;
+export 'package:fresh_dio/fresh_dio.dart' show AuthenticationStatus, RevokeTokenException;
 
 export 'src/error_screens/error_screens.dart';
 export 'src/exceptions/exceptions.dart';
