@@ -16,7 +16,7 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
 
       - name: Set up Dart
         uses: dart-lang/setup-dart@9a04e6d73cca37bd455e0608d7e5092f881fd603
@@ -31,6 +31,9 @@ jobs:
       
       - name: Run flutter pub get
         uses: flutter pub get
+      
+      - name: Run build runner
+        uses: dart pub run build_runner build -d
 
       - name: Verify formatting
         run: dart format . --line-length=200 --set-exit-if-changed
