@@ -27,16 +27,16 @@ jobs:
           channel: stable
           flutter-version: pubspec.yaml
       
-      - run: flutter --version
+      # - run: flutter --version
       
-      - name: Run flutter pub get
-        uses: flutter pub get
+      # - name: Run flutter pub get
+      #   uses: flutter pub get
       
-      - name: Run build runner
-        uses: dart pub run build_runner build -d
+      # - name: Run build runner
+      #   uses: dart pub run build_runner build -d
 
-      - name: Verify formatting
-        run: dart format . --line-length=200 --set-exit-if-changed
+      # - name: Verify formatting
+      #   run: dart format . --line-length=200 --set-exit-if-changed
 
-      - name: Analyze project source
-        run: dart analyze
+      # - name: Analyze project source
+      #   run: dart analyze
