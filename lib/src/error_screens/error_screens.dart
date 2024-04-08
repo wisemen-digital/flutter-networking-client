@@ -169,8 +169,7 @@ final class WiseErrorHandler {
         builder: (context) => codeWidget,
       );
     } else {
-      if (exception.response!.statusCode! >= 400 &&
-          exception.response!.statusCode! < 500) {
+      if (exception.response!.statusCode! >= 400 && exception.response!.statusCode! < 500) {
         if (otherClientError != null) {
           return MaterialPageRoute(
             builder: (context) => otherClientError!,
