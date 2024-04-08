@@ -16,11 +16,11 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v4
+      - name: Clone repo
+        uses: actions/checkout@v4
 
-      - uses: dart-lang/setup-dart@v1
-
-      - uses: subosito/flutter-action@v2
+      - name: Set up flutter
+        uses: subosito/flutter-action@v2
         with:
           channel: stable
           flutter-version-file: pubspec.yaml
