@@ -54,13 +54,17 @@ String getDetailedClientErrorMessage(String languageCode) {
     case 'en':
       errorMessage = 'A client error occurred, please try again later';
     case 'nl':
-      errorMessage = 'Er is een fout opgetreden bij de client, probeer het later opnieuw';
+      errorMessage =
+          'Er is een fout opgetreden bij de client, probeer het later opnieuw';
     case 'es':
-      errorMessage = 'Se produjo un error del cliente, por favor inténtelo de nuevo más tarde';
+      errorMessage =
+          'Se produjo un error del cliente, por favor inténtelo de nuevo más tarde';
     case 'de':
-      errorMessage = 'Es ist ein Clientfehler aufgetreten, bitte versuchen Sie es später erneut';
+      errorMessage =
+          'Es ist ein Clientfehler aufgetreten, bitte versuchen Sie es später erneut';
     case 'fr':
-      errorMessage = "Une erreur client s'est produite, veuillez réessayer plus tard";
+      errorMessage =
+          "Une erreur client s'est produite, veuillez réessayer plus tard";
     case 'ar':
       errorMessage = 'حدث خطأ في العميل، يرجى المحاولة مرة أخرى لاحقًا';
     case 'ja':
@@ -80,13 +84,17 @@ String getDetailedServerErrorMesssage(String languageCode) {
     case 'en':
       errorMessage = 'A server error occurred, please try again later';
     case 'nl':
-      errorMessage = 'Er is een serverfout opgetreden, probeer het later opnieuw';
+      errorMessage =
+          'Er is een serverfout opgetreden, probeer het later opnieuw';
     case 'es':
-      errorMessage = 'Se produjo un error del servidor, por favor inténtelo de nuevo más tarde';
+      errorMessage =
+          'Se produjo un error del servidor, por favor inténtelo de nuevo más tarde';
     case 'de':
-      errorMessage = 'Es ist ein Serverfehler aufgetreten, bitte versuchen Sie es später erneut';
+      errorMessage =
+          'Es ist ein Serverfehler aufgetreten, bitte versuchen Sie es später erneut';
     case 'fr':
-      errorMessage = "Une erreur de serveur s'est produite, veuillez réessayer plus tard";
+      errorMessage =
+          "Une erreur de serveur s'est produite, veuillez réessayer plus tard";
     case 'ar':
       errorMessage = 'حدث خطأ في الخادم، يرجى المحاولة مرة أخرى لاحقًا';
     case 'ja':
