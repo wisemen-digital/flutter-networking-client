@@ -32,4 +32,4 @@ jobs:
         run: dart format . --line-length=200 --set-exit-if-changed
 
       - name: Analyze project source
-        run: dart analyze
+        run: dart analyze --fatal-infos --fatal-warnings
