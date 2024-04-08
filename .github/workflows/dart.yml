@@ -21,7 +21,7 @@ jobs:
       - uses: dart-lang/setup-dart@9a04e6d73cca37bd455e0608d7e5092f881fd603
 
       - name: Verify formatting
-        run: dart format --output=none --set-exit-if-changed .
+        run: dart format --line-length=200 --output=none --set-exit-if-changed .
 
       - name: Analyze project source
         run: dart analyze
