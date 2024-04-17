@@ -1,6 +1,7 @@
 import 'package:dio/dio.dart';
 import 'package:fresh_dio/fresh_dio.dart';
-import 'package:pretty_dio_logger/pretty_dio_logger.dart';
+import 'package:talker_dio_logger/talker_dio_logger_interceptor.dart';
+import 'package:talker_dio_logger/talker_dio_logger_settings.dart';
 
 import 'interceptors.dart';
 
@@ -23,11 +24,10 @@ enum WiseInterceptor {
       case WiseInterceptor.error:
         return BaseErrorInterceptor();
       case WiseInterceptor.logging:
-        return PrettyDioLogger(
-          requestHeader: true,
-          requestBody: true,
-          responseHeader: true,
-          maxWidth: 120,
+        return TalkerDioLogger(
+          settings: const TalkerDioLoggerSettings(
+            printRequestHeaders: true,
+          ),
         );
     }
   }
