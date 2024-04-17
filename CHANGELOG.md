@@ -1,3 +1,7 @@
+## 1.0.4
+
+- Replaced pretty_dio_logger with talker_dio_logger
+
 ## 1.0.3
 
 - Changes for pub.dev analysis
