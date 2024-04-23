@@ -1,3 +1,7 @@
+## 1.0.5
+
+- Updated `dio` package
+
 ## 1.0.4
 
 - Replaced pretty_dio_logger with talker_dio_logger
