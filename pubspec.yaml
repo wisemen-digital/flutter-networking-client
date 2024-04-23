@@ -1,6 +1,6 @@
 name: wiseclient
 description: A http client based on Dio with extra features and a few interceptors for basic functionality.
-version: 1.0.4
+version: 1.0.5
 homepage: https://github.com/wisemen-digital/flutter-networking-client
 repository: https://github.com/wisemen-digital/flutter-networking-client
 
@@ -9,16 +9,27 @@ environment:
   flutter: '>=3.19.5'
 
 dependencies:
-  dio: ^5.4.0
+
+  # Flutter
   flutter:
     sdk: flutter
-  flutter_secure_storage: ^9.0.0
+
+  # Dio
+  dio: ^5.4.3+1
   fresh_dio: ^0.4.1
+
+  # Secure storage
+  flutter_secure_storage: ^9.0.0
+  
+  # Logging & Debugging
   native_dio_adapter: ^1.3.0
   talker_dio_logger: ^4.1.3
 
 dev_dependencies:
+  # Static analysis & linting
   lints: ^3.0.0
+
+  # Testing
   test: ^1.25.2
 
 flutter:
