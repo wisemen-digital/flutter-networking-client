@@ -1,3 +1,11 @@
+## 1.0.7
+
+- Changed secure storage read because of breaking bug on iOS
+
+## 1.0.6
+
+- Updated packages
+
 ## 1.0.5
 
 - Updated `dio` package
