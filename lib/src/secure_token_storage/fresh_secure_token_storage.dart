@@ -30,11 +30,9 @@ class FreshSecureTokenStorage implements TokenStorage<OAuthToken> {
   @override
   Future<OAuthToken?> read() async {
     if (_token != null) return _token;
-    final tokenFromStorage = (await storage.readAll())[storageIdentifier];
+    final tokenFromStorage = await storage.read(key: storageIdentifier);
     if (tokenFromStorage != null) {
-      // ignore: join_return_with_assignment
-      _token = tokenFromStorage.toOAuthToken;
-      return _token;
+      return tokenFromStorage.toOAuthToken;
     } else {
       return null;
     }

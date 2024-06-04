@@ -1,3 +1,7 @@
+## 1.0.8
+
+- Updated secure storage package and reverted workaround for efficiency
+
 ## 1.0.7
 
 - Changed secure storage read because of breaking bug on iOS
