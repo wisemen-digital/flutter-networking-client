@@ -1,3 +1,9 @@
+## 1.1.0
+
+- Added option to add permanent headers to client
+- Bugfix: Header options in client base (duplicate header)
+- Updated packages
+
 ## 1.0.8
 
 - Updated secure storage package and reverted workaround for efficiency

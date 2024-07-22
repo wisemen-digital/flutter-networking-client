@@ -59,14 +59,16 @@ abstract mixin class WiseClient implements Dio {
     Map<String, dynamic>? extraHeaders,
   }) async {
     try {
-      if (extraHeaders != null) {
-        options.headers.addAll(extraHeaders);
-      }
       final response = await get<dynamic>(
         path,
         cancelToken: cancelToken,
         queryParameters: queryParameters,
         data: body,
+        options: extraHeaders != null
+            ? Options(
+                headers: extraHeaders,
+              )
+            : null,
       );
       return response.data;
     } on DioException {
@@ -84,14 +86,16 @@ abstract mixin class WiseClient implements Dio {
     Map<String, dynamic>? extraHeaders,
   }) async {
     try {
-      if (extraHeaders != null) {
-        options.headers.addAll(extraHeaders);
-      }
       final response = await post<dynamic>(
         path,
         cancelToken: cancelToken,
         queryParameters: queryParameters,
         data: body,
+        options: extraHeaders != null
+            ? Options(
+                headers: extraHeaders,
+              )
+            : null,
       );
       return response.data;
     } on DioException {
@@ -109,14 +113,16 @@ abstract mixin class WiseClient implements Dio {
     Map<String, dynamic>? extraHeaders,
   }) async {
     try {
-      if (extraHeaders != null) {
-        options.headers.addAll(extraHeaders);
-      }
       final response = await put<dynamic>(
         path,
         cancelToken: cancelToken,
         queryParameters: queryParameters,
         data: body,
+        options: extraHeaders != null
+            ? Options(
+                headers: extraHeaders,
+              )
+            : null,
       );
       return response.data;
     } on DioException {
@@ -158,5 +164,10 @@ abstract mixin class WiseClient implements Dio {
   /// [setFreshToken] method that sets bearer authentication token
   Future<void> setFreshToken({required OAuth2Token token}) async {
     await fresh.setToken(token);
+  }
+
+  /// [addHeaders] method that adds permanent headers to the client
+  void addHeaders({required Map<String, dynamic> headers}) {
+    options.headers.addAll(headers);
   }
 }
