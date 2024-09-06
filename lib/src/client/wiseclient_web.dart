@@ -33,7 +33,8 @@ base class WebWiseClient extends DioForBrowser with WiseClient {
     Iterable<Interceptor>? replacementInterceptors,
   }) {
     options = baseOptions ?? BaseOptions();
-    httpClientAdapter = BrowserHttpClientAdapter();
+    httpClientAdapter = (HttpClientAdapter() as BrowserHttpClientAdapter)
+      ..withCredentials = true;
     if (replacementInterceptors != null) {
       interceptors.addAll(replacementInterceptors);
     } else {

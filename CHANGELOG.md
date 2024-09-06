@@ -1,3 +1,8 @@
+## 1.1.1
+
+- Bugfix: workaround for BrowserHttpAdapter issue
+- Updated packages
+
 ## 1.1.0
 
 - Added option to add permanent headers to client
